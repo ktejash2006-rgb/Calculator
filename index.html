@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blue Scientific Calculator</title>
+<style>
+    body {
+        background: #0a192f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial;
+    }
+    .calculator {
+        background: #112240;
+        padding: 20px;
+        border-radius: 15px;
+        width: 320px;
+        box-shadow: 0 0 20px black;
+    }
+    #display {
+        width: 100%;
+        height: 50px;
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: right;
+        padding: 5px;
+        border-radius: 10px;
+        border: none;
+        background: #e6f1ff;
+    }
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+    }
+    button {
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        background: #1f6feb;
+        color: white;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #388bfd;
+    }
+    .equal {
+        background: #238636;
+    }
+    .clear {
+        background: #da3633;
+    }
+    .delete {
+        background: #bf8700;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" disabled>
+
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="delete" onclick="deleteOne()">DEL</button>
+        <button onclick="append('(')">(</button>
+        <button onclick="append(')')">)</button>
+        <button onclick="append('/')">÷</button>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('*')">×</button>
+        <button onclick="append('Math.sqrt(')">√</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('-')">−</button>
+        <button onclick="append('Math.pow(')">xʸ</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('+')">+</button>
+        <button onclick="append('Math.sin(')">sin</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+        <button onclick="append('Math.cos(')">cos</button>
+        <button onclick="append('Math.tan(')">tan</button>
+
+        <button onclick="append('Math.log(')">log</button>
+    </div>
+</div>
+
+<script>
+function append(value) {
+    document.getElementById("display").value += value;
+}
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+
+function deleteOne() {
+    let current = document.getElementById("display").value;
+    document.getElementById("display").value = current.slice(0, -1);
+}
+
+function calculate() {
+    try {
+        document.getElementById("display").value = eval(document.getElementById("display").value);
+    } catch {
+        alert("Invalid Expression");
+    }
+}
+</script>
+
+</body>
+</html>
